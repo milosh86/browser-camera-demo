@@ -1,3 +1,21 @@
 body {
   font-family: sans-serif;
 }
+
+#image-preview {
+  max-width: 500px;
+}
+
+#file-input {
+  visibility: hidden;
+}
+
+#file-input-label,
+#snapshoot-btn {
+  margin: 10px;
+  font-size: 20px;
+  padding: 5px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  cursor: pointer;
+}

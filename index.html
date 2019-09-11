@@ -7,13 +7,26 @@
 </head>
 
 <body>
-	<div id="app"></div>
-	<input id="file-input" type="file" accept="image/*" capture>
-
+	<h1>Using camera in browser demo</h1>
+	<b>WebRTC supported?</b>
+	<i id="web-rtc-support"></i>
+	<hr />
+	<div id="video-sources">
+		<h2>1. Delegate photo taking to device</h2>
+		<div>
+			<label id="file-input-label" for="file-input">Take a photo</label>
+			<input id="file-input" type="file" accept="image/*" capture>
+		</div>
+		<h2>2. Integrate photo taking into web app</h2>
+		<div>
+			<video id="player" controls autoplay></video>
+			<br />
+			<button id="snapshoot-btn">Get snapshoot</button>
+		</div>
+	</div>
 	<h2>Image preview:</h2>
 	<img id="image-preview" />
-
-	<script src="src/index.js" />
+	<script src="src/index.js"></script>
 </body>
 
 </html>
