@@ -3,6 +3,7 @@ import "./image-capture-polyfill.js";
 
 const fileInput = document.getElementById("file-input");
 const imagePreview = document.getElementById("image-preview");
+const uploadStatus = document.getElementById("upload-status");
 
 fileInput.addEventListener("change", handleImageSelect);
 
@@ -59,4 +60,35 @@ if (isWebRtcSupported) {
       })
       .catch(error => console.error("takePhoto() error:", error));
   });
+
+  document
+    .getElementById("send-to-server-btn")
+    .addEventListener("click", () => {
+      if (!imagePreview.src) return;
+
+      uploadStatus.innerText = "";
+
+      fetch(imagePreview.src)
+        .then(res => res.blob())
+        .then(
+          imageBlob =>
+            console.log("imageBlob", imageBlob) ||
+            fetch("https://m6k6o.sse.codesandbox.io/upload", {
+              method: "POST",
+              headers: {
+                "Content-Type": imageBlob.type
+              },
+              body: new FormData().append("photo", imageBlob)
+            })
+              .then(res => {
+                if (!res.ok) throw new Error("Not OK:" + res.status);
+                console.log("Image uploaded!");
+                uploadStatus.innerText = "Photo uploaded!";
+              })
+              .catch(e => {
+                console.log("Image upload failed!", e.message);
+                uploadStatus.innerText = "Photo upload failed! " + e.message;
+              })
+        );
+    });
 }

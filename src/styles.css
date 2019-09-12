@@ -6,11 +6,17 @@ body {
   max-width: 500px;
 }
 
+#file-input-wrapper {
+  height: 0;
+  width: 0;
+  overflow: hidden;
+}
 #file-input {
-  visibility: hidden;
+  /* visibility: hidden; */
 }
 
 #file-input-label,
+#send-to-server-btn,
 #snapshoot-btn {
   margin: 10px;
   font-size: 20px;
